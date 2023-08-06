@@ -1,7 +1,6 @@
 ﻿using Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Users.Core.Repositories;
+using Microsoft.EntityFrameworkCore.Diagnostics;                        
 using Users.Infrastructure.Repositories;
 using Users.Services;
 using Users.Core.Services;
@@ -11,6 +10,8 @@ using Users.Presentation.Api.Filters;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc;
 using Users.Core.Models.Settings;
+using SharedKernel.Infrastructure.Repositories;
+using Users.Core.Repositories;
 
 namespace Users.Presentation.Api.Extensions
 {
@@ -45,6 +46,7 @@ namespace Users.Presentation.Api.Extensions
         public static void AddRepositoriesConfiguration(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         /// <summary>Configure api versioning.</summary>

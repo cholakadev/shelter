@@ -1,22 +1,20 @@
 ﻿using FluentResult;
-using Users.Core.Repositories;
 using Users.Core.Requests;
 using Users.Core.Services;
-using Users.Infrastructure.Domain;
 using Users.Core.Helpers;
 using Users.Core.Models.Users;
 using Users.Core.Models.Settings;
 using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore;
+using Users.Core.Repositories;
 
 namespace Users.Services
 {
     public class UserService : IUserService
     {
-        private readonly IRepository<User> _usersRepository;
+        private readonly IUserRepository _usersRepository;
         private readonly TokenSettings _tokenSettings;
 
-        public UserService(IRepository<User> usersRepository, IOptions<TokenSettings> tokenSettings)
+        public UserService(IUserRepository usersRepository, IOptions<TokenSettings> tokenSettings)
         {
             _usersRepository = usersRepository;
             _tokenSettings = tokenSettings.Value;
@@ -26,16 +24,14 @@ namespace Users.Services
         {
             return await Result
                 .Create(request)
-                .MapAsync(x => _usersRepository.GetAll()
-                                          .Include(x => x.Credentials)
-                                          .FirstOrDefaultAsync(x => x.Email == request.Email))
-                .ValidateAsync(user => user != null, ResultComplete.OperationFailed, $"User with email {request.Email} is not found.")
+                .MapAsync(request => _usersRepository.GetUserByEmail(x => x.Email == request.Email))
+                .ValidateNotNullAsync(ResultComplete.OperationFailed, $"User with email {request.Email} is not found.", true)
                 .ValidateAsync(user =>
                     PasswordHelper.VerifyPassword(request.Password, user.Credentials.Password),
                     ResultComplete.InvalidArgument,
-                    $"Login for user with email {request.Email} failed.")
+                    $"Login for user with email {request.Email} failed.",
+                    true)
                 .MapAsync(user => TokenHelper.GenerateJwtToken(user.Email, user.Id, _tokenSettings));
-
         }
 
         public async Task<Result<bool>> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken)

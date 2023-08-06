@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedKernel.Infrastructure.Database;
+using SharedKernel.Infrastructure.Repositories;
 using System.Linq.Expressions;
-using Users.Core.Domain.Contracts;
-using Users.Core.Repositories;
 using Users.Infrastructure.Database;
 
 namespace Users.Infrastructure.Repositories
@@ -18,6 +18,9 @@ namespace Users.Infrastructure.Repositories
 
         public virtual async Task<TEntity> AddAsync(TEntity t, CancellationToken cancellationToken = default)
         {
+            if (t is IActivatable activatable)
+                activatable.Active = true;
+
             _context.Set<TEntity>().Add(t);
             await _context.SaveChangesAsync(cancellationToken);
             return t;

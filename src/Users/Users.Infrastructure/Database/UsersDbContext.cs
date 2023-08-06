@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedKernel.Infrastructure.Database;
 using Users.Infrastructure.Domain;
 
 namespace Users.Infrastructure.Database
 {
-    public sealed class UsersDbContext : DbContext
+    public sealed class UsersDbContext : BaseDbContext<UsersDbContext>
     {
         public UsersDbContext(DbContextOptions<UsersDbContext> options)
             : base(options)

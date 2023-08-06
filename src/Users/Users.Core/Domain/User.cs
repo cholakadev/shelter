@@ -1,4 +1,4 @@
-﻿using Users.Core.Domain.Contracts;
+﻿using SharedKernel.Infrastructure.Database;
 
 namespace Users.Infrastructure.Domain
 {

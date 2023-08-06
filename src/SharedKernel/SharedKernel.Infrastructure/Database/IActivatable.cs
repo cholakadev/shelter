@@ -1,4 +1,4 @@
-﻿namespace Users.Core.Domain.Contracts
+﻿namespace SharedKernel.Infrastructure.Database
 {
     public interface IActivatable
     {

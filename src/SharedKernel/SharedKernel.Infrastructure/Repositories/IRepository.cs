@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Users.Core.Repositories
+namespace SharedKernel.Infrastructure.Repositories
 {
     /// <summary>Generic repository interface.</summary>
     /// <typeparam name="T"> Entity class.</typeparam>
