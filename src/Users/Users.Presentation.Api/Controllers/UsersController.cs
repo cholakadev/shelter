@@ -25,5 +25,13 @@ namespace Users.Presentation.Api.Controllers
         [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
             => await _userService.RegisterAsync(request, cancellationToken).ToActionResultAsync(this);
+
+        /// <summary>User login and generating a token.</summary>
+        /// <param name="request">The request to sign in a user.</param>
+        [HttpPost("login")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+            => await _userService.LoginAsync(request).ToActionResultAsync(this);
     }
 }

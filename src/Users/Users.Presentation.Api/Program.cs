@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Configuration;
+using Users.Core.Models.Settings;
 using Users.Presentation.Api.Configuration;
 using Users.Presentation.Api.Extensions;
 
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 string connectionString = builder.Configuration.GetConnectionString("AppConfig");
 builder.Configuration.AddAzureAppConfiguration(connectionString);
+
+builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection(nameof(TokenSettings)));
 
 builder.Services.AddAuthorization();
 builder.Services.AddCustomVersioning();

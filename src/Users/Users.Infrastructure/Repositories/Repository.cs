@@ -16,21 +16,21 @@ namespace Users.Infrastructure.Repositories
             _context = context;
         }
 
-        public virtual async Task<TEntity> AddAsync(TEntity t)
+        public virtual async Task<TEntity> AddAsync(TEntity t, CancellationToken cancellationToken = default)
         {
             _context.Set<TEntity>().Add(t);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return t;
         }
 
-        public virtual async Task<ICollection<TEntity>> AddManyAsync(ICollection<TEntity> t)
+        public virtual async Task<ICollection<TEntity>> AddManyAsync(ICollection<TEntity> t, CancellationToken cancellationToken = default)
         {
             await _context.Set<TEntity>().AddRangeAsync(t);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return t;
         }
 
-        public virtual async Task<int> DeleteAsync(TEntity entity, bool isHard = false)
+        public virtual async Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default, bool isHard = false)
         {
             if (entity is IActivatable activatable && !isHard)
             {
@@ -42,7 +42,7 @@ namespace Users.Infrastructure.Repositories
                 _context.Set<TEntity>().Remove(entity);
             }
 
-            return await SaveChangesAsync();
+            return await SaveChangesAsync(cancellationToken);
         }
 
         public virtual Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> match, bool tracking = false)
@@ -55,20 +55,20 @@ namespace Users.Infrastructure.Repositories
         public IQueryable<TEntity> GetAll(bool tracking = false)
             => tracking ? _context.Set<TEntity>() : _context.Set<TEntity>().AsNoTracking();
 
-        public virtual async Task<int> SaveChangesAsync()
-            => await _context.SaveChangesAsync();
+        public virtual async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+            => await _context.SaveChangesAsync(cancellationToken);
 
-        public virtual async Task<TEntity> UpdateAsync(TEntity t)
+        public virtual async Task<TEntity> UpdateAsync(TEntity t, CancellationToken cancellationToken = default)
         {
             _context.Set<TEntity>().Update(t);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return t;
         }
 
-        public virtual async Task<ICollection<TEntity>> UpdateManyAsync(ICollection<TEntity> t)
+        public virtual async Task<ICollection<TEntity>> UpdateManyAsync(ICollection<TEntity> t, CancellationToken cancellationToken = default)
         {
             _context.Set<TEntity>().UpdateRange(t);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return t;
         }
     }

@@ -12,5 +12,8 @@ namespace Users.Core.Helpers
             string hashedPassword = BCryptNet.HashPassword(password, salt);
             return hashedPassword;
         }
+
+        public static bool VerifyPassword(string password, string salt)
+            => BCryptNet.Verify(password, salt);
     }
 }
