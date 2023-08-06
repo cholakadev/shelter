@@ -1,7 +1,8 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Http;
+using System.Net;
 using System.Text.Json;
 
-namespace Users.Presentation.Api.Configuration
+namespace SharedKernel.Configuration
 {
     /// <summary>
     /// Exception handler for the whole application.

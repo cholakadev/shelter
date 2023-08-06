@@ -1,25 +1,40 @@
+using Hotels.Infrastructure.Database;
+using Hotels.Presentation.Api.Extensions;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using SharedKernel.Configuration;
+using SharedKernel.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+string connectionString = builder.Configuration.GetConnectionString("AppConfig");
+builder.Configuration.AddAzureAppConfiguration(connectionString);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddAuthorization();
+builder.Services.AddSharedAuthentication(builder.Configuration);
+builder.Services.AddSharedCustomVersioning();
+builder.Services.AddSharedCustomSwagger();
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddRepositoriesConfiguration();
+builder.Services.AddServicesConfiguration();
+builder.Services.AddSharedCorsConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseCustomSwagger(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/", () => Results.Redirect("swagger", true)).ExcludeFromDescription();
 
 app.Run();

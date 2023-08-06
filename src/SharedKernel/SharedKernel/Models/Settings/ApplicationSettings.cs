@@ -1,4 +1,4 @@
-﻿namespace Users.Core.Models.Settings
+﻿namespace SharedKernel.Models.Settings
 {
     public class ApplicationSettings
     {

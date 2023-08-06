@@ -3,9 +3,9 @@ using Users.Core.Requests;
 using Users.Core.Services;
 using Users.Core.Helpers;
 using Users.Core.Models.Users;
-using Users.Core.Models.Settings;
 using Microsoft.Extensions.Options;
 using Users.Core.Repositories;
+using SharedKernel.Models.Settings;
 
 namespace Users.Services
 {

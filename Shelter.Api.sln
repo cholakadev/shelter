@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKerne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Infrastructure", "src\SharedKernel\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj", "{B8761107-BD38-4E5A-994F-98975D3EA52E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "src\SharedKernel\SharedKernel\SharedKernel.csproj", "{7BE6DC82-80B9-401F-B36A-50D897BD1F59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{B8761107-BD38-4E5A-994F-98975D3EA52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8761107-BD38-4E5A-994F-98975D3EA52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8761107-BD38-4E5A-994F-98975D3EA52E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BE6DC82-80B9-401F-B36A-50D897BD1F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE6DC82-80B9-401F-B36A-50D897BD1F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE6DC82-80B9-401F-B36A-50D897BD1F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE6DC82-80B9-401F-B36A-50D897BD1F59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{9344A5FB-E275-43AE-AE9D-93C2A41AA14D} = {A4BC9C34-2FEB-400D-8698-46DCC1DB8A8D}
 		{313976EA-FD6C-46F6-8A97-58E0962FC7F8} = {4C498EFA-04AB-484C-83CE-F649482C140C}
 		{B8761107-BD38-4E5A-994F-98975D3EA52E} = {313976EA-FD6C-46F6-8A97-58E0962FC7F8}
+		{7BE6DC82-80B9-401F-B36A-50D897BD1F59} = {313976EA-FD6C-46F6-8A97-58E0962FC7F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E956187A-214F-42E2-8EAD-A80E20460FB7}

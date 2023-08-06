@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Users.Presentation.Api.Filters
+namespace SharedKernel.Filter
 {
     /// <summary>A swagger filter to be used with Api versioning.</summary>
     public sealed class SwaggerDefaultValues : IOperationFilter

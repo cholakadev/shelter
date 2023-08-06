@@ -1,20 +1,17 @@
-﻿using Users.Infrastructure.Repositories;
-using Users.Services;
-using Users.Core.Services;
-using SharedKernel.Infrastructure.Repositories;
-using Users.Core.Repositories;
+﻿using Hotels.Core.Services;
+using Hotels.Infrastructure.Database;
+using Hotels.Services;
 using Microsoft.EntityFrameworkCore;
-using Users.Infrastructure.Database;
 
-namespace Users.Presentation.Api.Extensions
+namespace Hotels.Presentation.Api.Extensions
 {
     public static class ServiceCollectionExtensions
     {
         public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<UsersDbContext>(options =>
+            services.AddDbContext<HotelsDbContext>(options =>
             {
-                var connectionString = configuration["UsersDbConnectionString"];
+                var connectionString = configuration["HotelsDbConnectionString"];
 
                 options.UseSqlServer(connectionString);
             });
@@ -24,13 +21,12 @@ namespace Users.Presentation.Api.Extensions
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IHotelService, HotelService>();
         }
 
         public static void AddRepositoriesConfiguration(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<IUserRepository, UserRepository>();
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
     }
 }

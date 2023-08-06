@@ -1,8 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using SharedKernel.Models.Settings;
+using SharedKernel.Services.Auth;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Users.Core.Models.Settings;
 using Users.Infrastructure.Domain;
 
 namespace Users.Core.Helpers
@@ -16,8 +17,8 @@ namespace Users.Core.Helpers
 
             var claims = new ClaimsIdentity(new[]
             {
-            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-            new Claim(ClaimTypes.Email, userEmail),
+            new Claim(AuthConstants.UserIdType, userId.ToString()),
+            new Claim(AuthConstants.EmailType, userEmail),
         });
 
             var tokenDescriptor = new SecurityTokenDescriptor

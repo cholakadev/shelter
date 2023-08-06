@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace Users.Presentation.Api.Extensions
+namespace SharedKernel.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
