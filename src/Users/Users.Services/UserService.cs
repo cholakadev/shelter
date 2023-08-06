@@ -4,7 +4,7 @@ using Users.Core.Requests;
 using Users.Core.Services;
 using Users.Infrastructure.Domain;
 using Users.Core.Helpers;
-using Users.Core.Models;
+using Users.Core.Models.Users;
 
 namespace Users.Services
 {

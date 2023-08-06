@@ -2,7 +2,7 @@
 using Users.Infrastructure.Domain;
 #pragma warning disable CS8603 // Possible null reference return.
 
-namespace Users.Core.Models
+namespace Users.Core.Models.Users
 {
     public static class UserFactory
     {
