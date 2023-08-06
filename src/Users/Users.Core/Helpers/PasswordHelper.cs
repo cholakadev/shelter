@@ -13,7 +13,7 @@ namespace Users.Core.Helpers
             return hashedPassword;
         }
 
-        public static bool VerifyPassword(string password, string salt)
-            => BCryptNet.Verify(password, salt);
+        public static bool VerifyPassword(string password, string passwordHash)
+            => BCryptNet.Verify(password, passwordHash);
     }
 }

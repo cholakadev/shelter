@@ -31,7 +31,7 @@ namespace Users.Services
                                           .FirstOrDefaultAsync(x => x.Email == request.Email))
                 .ValidateAsync(user => user != null, ResultComplete.OperationFailed, $"User with email {request.Email} is not found.")
                 .ValidateAsync(user =>
-                    !PasswordHelper.VerifyPassword(request.Password, user.Credentials.Salt),
+                    PasswordHelper.VerifyPassword(request.Password, user.Credentials.Password),
                     ResultComplete.InvalidArgument,
                     $"Login for user with email {request.Email} failed.")
                 .MapAsync(user => TokenHelper.GenerateJwtToken(user.Email, user.Id, _tokenSettings));
