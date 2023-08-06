@@ -1,9 +1,10 @@
-﻿using Users.Core.Requests;
+﻿using FluentResult;
+using Users.Core.Requests;
 
 namespace Users.Core.Services
 {
     public interface IUserService
     {
-        Task<bool> RegisterAsync(RegisterRequest request);
+        Task<Result<bool>> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken);
     }
 }

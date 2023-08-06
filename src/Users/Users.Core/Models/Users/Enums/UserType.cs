@@ -1,4 +1,4 @@
-﻿namespace Users.Core.Models.Enums
+﻿namespace Users.Core.Models.Users.Enums
 {
     public enum UserType
     {

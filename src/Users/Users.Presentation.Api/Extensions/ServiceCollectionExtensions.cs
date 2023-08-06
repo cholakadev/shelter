@@ -1,6 +1,10 @@
 ﻿using Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Users.Core.Repositories;
+using Users.Infrastructure.Repositories;
+using Users.Services;
+using Users.Core.Services;
 
 namespace Users.Presentation.Api.Extensions
 {
@@ -23,6 +27,18 @@ namespace Users.Presentation.Api.Extensions
                         .EnableDetailedErrors();
                 }
             });
+        }
+
+        public static void AddServicesConfiguration(this IServiceCollection services)
+        {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddTransient<IUserService, UserService>();
+        }
+
+            public static void AddRepositoriesConfiguration(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
     }
 }
