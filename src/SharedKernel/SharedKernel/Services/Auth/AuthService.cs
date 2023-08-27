@@ -15,6 +15,8 @@ namespace SharedKernel.Services.Auth
 
         public string GetUserId => _context.User.Claims.Single(x => x.Type == AuthConstants.UserIdType).Value;
 
+        public string GetUserEmail => _context.User.Claims.Single(x => x.Type == AuthConstants.EmailType).Value;
+
         public async Task<string> GetUserAccessToken()
             => await _context.GetTokenAsync("token");
     }

@@ -4,7 +4,6 @@ using SharedKernel.Services.Auth;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Users.Infrastructure.Domain;
 
 namespace Users.Core.Helpers
 {
@@ -17,9 +16,9 @@ namespace Users.Core.Helpers
 
             var claims = new ClaimsIdentity(new[]
             {
-            new Claim(AuthConstants.UserIdType, userId.ToString()),
-            new Claim(AuthConstants.EmailType, userEmail),
-        });
+                new Claim(AuthConstants.UserIdType, userId.ToString()),
+                new Claim(AuthConstants.EmailType, userEmail),
+            });
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

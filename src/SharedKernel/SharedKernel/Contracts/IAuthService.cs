@@ -4,6 +4,8 @@
     {
         public string GetUserId { get; }
 
+        public string GetUserEmail { get; }
+
         public Task<string> GetUserAccessToken();
     }
 }

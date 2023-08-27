@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
     <ProjectReference Include="..\..\SharedKernel\SharedKernel\SharedKernel.csproj" />
     <ProjectReference Include="..\Hotels.Services\Hotels.Services.csproj" />
   </ItemGroup>
